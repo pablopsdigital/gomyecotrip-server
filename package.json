@@ -1,0 +1,43 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This is the backend of the ecoexperiences platform gomyecotrip.com",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production nodemon --exec node --experimental-modules server.js",
+    "dev": "cross-env NODE_ENV=development nodemon --exec node --experimental-modules server.js",
+    "test": "cross-env NODE_ENV=test jest integration --verbose --silent",
+    "loadSeedData": "node ./scripts/loadSeedData.js",
+    "generateFakerData": "node ./scripts/fakerDataGenerator.js",
+    "loadFakerData": "node ./scripts/loadFakerData.js"
+  },
+  "author": "Pablo Pérez - pablopsdigital@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.27.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.2.0",
+    "http-errors": "^1.8.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.13",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.3",
+    "stripe": "^8.191.0",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-node-express": "^1.2.3",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "faker": "^5.5.3",
+    "jest": "^27.4.4",
+    "nodemon": "^2.0.15",
+    "prettier": "2.4.0",
+    "supertest": "^6.1.6"
+  }
+}

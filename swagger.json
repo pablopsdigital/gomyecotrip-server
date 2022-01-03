@@ -1,0 +1,644 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Gomyecotrip",
+    "description": "Gomyecotrip API Information",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "contact": {
+      "name": "Pablo Pérez",
+      "email": "pablopsdigital@gmail.com",
+      "url": "https://pablopsdigital.com"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Experiences",
+      "description": "API for experiences in the system"
+    },
+    {
+      "name": "Bookings",
+      "description": "API for bookings in the system"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/users": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "query",
+          "required": false,
+          "description": "Ability to search by words or letters in the name.",
+          "type": "string"
+        },
+        {
+          "name": "sale",
+          "in": "query",
+          "required": false,
+          "description": "Filter between ads for sale (true) and buy (false)",
+          "type": "string"
+        },
+        {
+          "name": "skip",
+          "in": "query",
+          "required": false,
+          "description": "To skip the start records.",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "Limit the number of returned records.",
+          "type": "integer"
+        },
+        {
+          "name": "price",
+          "in": "query",
+          "required": false,
+          "description": "Limiting the price range there are different possibilities: \n10-50:  Price indluded between the two value\n10-: Price greater than value, excluding value\n-50: Price less than value, excluding value\n50: Price equal to value",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all advertisements in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "parameters": [
+        {
+          "name": "advertisementId",
+          "in": "path",
+          "required": true,
+          "description": "ID of advertisement that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get advertisement with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/signin": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Get all tags in advertisements in system no repeat",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/signup": {
+      "post": {
+        "summary": "Create adveretisement",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "advertisement",
+            "in": "body",
+            "description": "User with values of create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New advertisemente is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/update/profile": {
+      "put": {
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "Update a advertisement with new values of properties. Is necesary include ID",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "summary": "Update one advertisement in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/update/{id}": {
+      "put": {
+        "summary": "Delete advertisement with given ID",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "Delete a advertisement with ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/delete/{id}": {
+      "delete": {
+        "summary": "Delete advertisement with given ID",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "Delete a advertisement with ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/experiences": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "query",
+          "required": false,
+          "description": "Ability to search by words or letters in the name.",
+          "type": "string"
+        },
+        {
+          "name": "sale",
+          "in": "query",
+          "required": false,
+          "description": "Filter between ads for sale (true) and buy (false)",
+          "type": "string"
+        },
+        {
+          "name": "skip",
+          "in": "query",
+          "required": false,
+          "description": "To skip the start records.",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "Limit the number of returned records.",
+          "type": "integer"
+        },
+        {
+          "name": "price",
+          "in": "query",
+          "required": false,
+          "description": "Limiting the price range there are different possibilities: \n10-50:  Price indluded between the two value\n10-: Price greater than value, excluding value\n-50: Price less than value, excluding value\n50: Price equal to value",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Experiences"],
+        "summary": "Get all advertisements in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/experiences/{id}": {
+      "parameters": [
+        {
+          "name": "advertisementId",
+          "in": "path",
+          "required": true,
+          "description": "ID of advertisement that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Experiences"],
+        "summary": "Get advertisement with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/experiences/create": {
+      "post": {
+        "summary": "Create adveretisement",
+        "tags": ["Experiences"],
+        "parameters": [
+          {
+            "name": "advertisement",
+            "in": "body",
+            "description": "User with values of create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New advertisemente is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/experiences/update/{id}": {
+      "put": {
+        "tags": ["Experiences"],
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "Update a advertisement with new values of properties. Is necesary include ID",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "summary": "Update one advertisement in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/experiences/delete/{id}": {
+      "delete": {
+        "summary": "Delete advertisement with given ID",
+        "tags": ["Experiences"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "Delete a advertisement with ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/bookings": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "query",
+          "required": false,
+          "description": "Ability to search by words or letters in the name.",
+          "type": "string"
+        },
+        {
+          "name": "sale",
+          "in": "query",
+          "required": false,
+          "description": "Filter between ads for sale (true) and buy (false)",
+          "type": "string"
+        },
+        {
+          "name": "skip",
+          "in": "query",
+          "required": false,
+          "description": "To skip the start records.",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "required": false,
+          "description": "Limit the number of returned records.",
+          "type": "integer"
+        },
+        {
+          "name": "price",
+          "in": "query",
+          "required": false,
+          "description": "Limiting the price range there are different possibilities: \n10-50:  Price indluded between the two value\n10-: Price greater than value, excluding value\n-50: Price less than value, excluding value\n50: Price equal to value",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Bookings"],
+        "summary": "Get all advertisements in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/bookings/{id}": {
+      "parameters": [
+        {
+          "name": "advertisementId",
+          "in": "path",
+          "required": true,
+          "description": "ID of advertisement that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Bookings"],
+        "summary": "Get advertisement with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/bookings/payment": {
+      "post": {
+        "summary": "Create adveretisement",
+        "tags": ["Bookings"],
+        "parameters": [
+          {
+            "name": "advertisement",
+            "in": "body",
+            "description": "User with values of create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New advertisemente is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/bookings/{id}/cancel": {
+      "put": {
+        "tags": ["Bookings"],
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "Update a advertisement with new values of properties. Is necesary include ID",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "summary": "Update one advertisement in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/bookings/delete/{id}": {
+      "delete": {
+        "summary": "Delete advertisement with given ID",
+        "tags": ["Bookings"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "description": "Delete a advertisement with ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "_id",
+        "firstName",
+        "lastName",
+        "email",
+        "password",
+        "imageAvatar",
+        "isAdmin",
+        "isHosted"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "readOnly": true,
+          "uniqueItems": true,
+          "example": "614629809a7105580c81b249"
+        },
+        "firstName": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "Ceciley"
+        },
+        "lastName": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "Ceciley"
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "crobrow0@biglobe.ne.jp"
+        },
+        "password": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "fsjTNs599evU"
+        },
+        "imageAvatar": {
+          "type": "string",
+          "example": "https://dummyimage.com/400x400/"
+        },
+        "isAdmin": {
+          "type": "boolean",
+          "example": "false"
+        },
+        "isHosted": {
+          "type": "boolean",
+          "example": "true"
+        }
+      }
+    },
+    "Experience": {
+      "required": [
+        "_id",
+        "name",
+        "description",
+        "featuredImage",
+        "address",
+        "phoneNumber",
+        "ratesForPerson",
+        "map",
+        "reviewStart",
+        "reviewCount"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "readOnly": true,
+          "uniqueItems": true,
+          "example": "614629809a7105580c81b249"
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "Iphone X"
+        },
+        "sale": {
+          "type": "boolean",
+          "example": "true"
+        },
+        "price": {
+          "type": "number",
+          "example": "23.50"
+        },
+        "photo": {
+          "type": "string",
+          "example": "iphone.jpg"
+        },
+        "tags": {
+          "type": "string",
+          "enum": ["uncategorized", "work", "lifestyle", "motor", "mobile"],
+          "example": "work"
+        },
+        "createdAt": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "Booking": {
+      "required": ["_id", "name", "sale", "price", "tags"],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "readOnly": true,
+          "uniqueItems": true,
+          "example": "614629809a7105580c81b249"
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "Iphone X"
+        },
+        "sale": {
+          "type": "boolean",
+          "example": "true"
+        },
+        "price": {
+          "type": "number",
+          "example": "23.50"
+        },
+        "photo": {
+          "type": "string",
+          "example": "iphone.jpg"
+        },
+        "tags": {
+          "type": "string",
+          "enum": ["uncategorized", "work", "lifestyle", "motor", "mobile"],
+          "example": "work"
+        },
+        "createdAt": {
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    }
+  }
+}
