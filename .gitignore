@@ -38,7 +38,7 @@ build
 .env.production.local
 
 # images
-uploads/
+
 
 
 npm-debug.log*
