@@ -27,6 +27,8 @@ const getStripeSessionId = expressAsyncHandler(async (req, res, next) => {
     // console.log('BookingSelect', req.body.bookingDetails);
 
     const userBuyId = req.body.userId;
+    console.log('UserInfo', userBuyId);
+
     const experienceId = req.body.experienceId;
     const bookingDetails = req.body.bookingDetails;
 
@@ -120,12 +122,12 @@ const getStripeSessionId = expressAsyncHandler(async (req, res, next) => {
     });
     // console.log('Newbooking', newBooking);
     const createdBooking = await newBooking.save();
-    // const currentBooking = await experience.save();
+    const currentBooking = await experience.save();
 
     //==============================================================
     //Return response
     //==============================================================
-    await User.findByIdAndUpdate(req.userBuyId, { stripeSession: sessionPay }).exec();
+    await User.findByIdAndUpdate(userBuyId, { stripeSession: sessionPay }).exec();
 
     console.log('sessión: ', sessionPay);
 
