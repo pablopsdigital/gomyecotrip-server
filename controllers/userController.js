@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const generateToken = require('../services/generateTokenJWT');
 const expressAsyncHandler = require('express-async-handler');
+const { sendEmailSignUp } = require('../services/sendEmails');
 
 /**
  *
@@ -24,6 +25,9 @@ const signUpUser = expressAsyncHandler(async (req, res, next) => {
     } else {
       userDataBody.password = await bcrypt.hash(userDataBody.password, 10);
       const user = await User.create(userDataBody);
+
+      //Send email
+      sendEmailSignUp(user);
 
       //Send response
       res.status(200).json({
