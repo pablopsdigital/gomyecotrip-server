@@ -1,15 +1,11 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 
-//Config for load .env files
-if (process.env.NODE_ENV !== 'production') {
-  const dotenv = require('dotenv');
-  dotenv.config();
-}
-
-mongoose.connection.on('error', (err) => {
-  console.log('Connection error', err);
+mongoose.connection.on("error", (err) => {
+  console.log("Connection error", err);
   process.exit(1);
 });
 

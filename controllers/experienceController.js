@@ -23,20 +23,21 @@ const getAllExperiences = expressAsyncHandler(async (req, res, next) => {
       .sort({ createdAt: -1 });
 
     //Optimizer image response
-    experiences.map((experience) => {
-      experience.featuredImage = cloudinary.url(experience.featuredImage, {
-        type: 'fetch',
-        transformation: [
-          { width: '1000', crop: 'scale' },
-          { fetch_format: 'auto' },
-          { quality: 'auto' },
-          { secure: true },
-          { resource_type: 'image' },
-          { flags: 'lossy' },
-          { dpr: 'auto' },
-        ],
-      });
-    });
+    // TODO: Optimization images response
+    // experiences.map((experience) => {
+    //   experience.featuredImage = cloudinary.url(experience.featuredImage, {
+    //     type: "fetch",
+    //     transformation: [
+    //       { width: "1000", crop: "scale" },
+    //       { fetch_format: "auto" },
+    //       { quality: "auto" },
+    //       { secure: true },
+    //       { resource_type: "image" },
+    //       { flags: "lossy" },
+    //       { dpr: "auto" },
+    //     ],
+    //   });
+    // });
 
     //Send response
     res.status(200).json({ experiences });
