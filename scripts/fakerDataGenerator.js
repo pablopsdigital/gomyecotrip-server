@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
 //Import modules
-const faker = require('faker/locale/es');
-const fs = require('fs');
-var util = require('util');
+const faker = require("faker/locale/es");
+const fs = require("fs");
+var util = require("util");
 
 //Import models
-const ExperienceModel = require('../models/experienceModel');
-const UserModel = require('../models/userModel');
-const BookingModel = require('../models/bookingModel');
+const ExperienceModel = require("../models/experienceModel");
+const UserModel = require("../models/userModel");
+const BookingModel = require("../models/bookingModel");
 
 //Execute general function script
-fakerLoadData().catch((err) => console.log('There was an error', err));
+fakerLoadData().catch((err) => console.log("There was an error", err));
 
 async function fakerLoadData() {
   await fakerUsers();
@@ -28,26 +28,26 @@ async function fakerUsers() {}
 //Create mock experiences in database
 //================================================================
 const types = [
-  'Arte y cultura',
-  'Ocio',
-  'Comida y bebida',
-  'Deportes',
-  'Bienestar',
-  'Lugares emblemáticos',
-  'Naturaleza y aire libre',
+  "Art and culture",
+  "Leisure",
+  "Food and drink",
+  "Sports",
+  "Welfare",
+  "Emblematic places",
+  "Nature and the great outdoors",
 ];
 
 const amenities = [
-  'amenitie 1',
-  'amenitie 2',
-  'amenitie 3',
-  'amenitie 4',
-  'amenitie 5',
-  'amenitie 6',
-  'amenitie 7',
-  'amenitie 8',
-  'amenitie 9',
-  'amenitie 10',
+  "amenitie 1",
+  "amenitie 2",
+  "amenitie 3",
+  "amenitie 4",
+  "amenitie 5",
+  "amenitie 6",
+  "amenitie 7",
+  "amenitie 8",
+  "amenitie 9",
+  "amenitie 10",
 ];
 
 async function fakerExperiences() {
@@ -69,7 +69,7 @@ async function fakerExperiences() {
         faker.image.sports(1500, 1500),
       ],
       type: types.slice(0, Math.random() * (types.length - 1) + 1),
-      hosted: '',
+      hosted: "",
       address: faker.address.direction(),
       hasGroup: faker.datatype.boolean(),
       minPersonForGroup: faker.datatype.number({ min: 0, max: 15 }),
@@ -93,11 +93,11 @@ async function fakerExperiences() {
   }
 
   fs.writeFileSync(
-    './scripts/fakerData/experiences.js',
+    "./scripts/fakerData/experiences.js",
     `const data = { experiences: 
         ${util.inspect(experiences)}
     }; module.exports=data;`,
-    'utf-8'
+    "utf-8"
   );
 }
 
